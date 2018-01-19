@@ -4,8 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
 import java.security.cert.Certificate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,12 +29,13 @@ import com.zhaoyao.util.QRCodeUtil;
 import com.swetake.util.Qrcode;
 
 import javax.imageio.ImageIO;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
-public class Test {
+public class Test<T> {
 	  public static String DI(Exception e) {
 	        return Debug.name(e)+"|"+Debug.line(e)+"|"+Debug.fun(e)+"|";
 	    }
@@ -52,10 +57,31 @@ public class Test {
 //	        System.out.println("input your filename ends with EnterKey");
 //	        String filename=sc.next();
 //	        String filepath="D:\\"+filename+".png";
-	        new Test().drawQRCODE("content", "C:/Users/dell/Desktop/drawqrcode.png");
-	        System.out.println("draw QR_code successfullly!");
+//	        new Test().drawQRCODE("content", "C:/Users/dell/Desktop/drawqrcode.png");
+//	        System.out.println("draw QR_code successfullly!");
+		  Debug<TestEntity<String>> test = new Debug<TestEntity<String>>();
+		  test.name();
+//		  Type[] parameterizedTypes = getParameterizedTypes(test);
+//		  System.out.println(parameterizedTypes);
+//		  Class<?> analysisClazzInfo = analysisClazzInfo(test);
 
 	    }
+	  
+	  public static void name(Class<?> clazz) {
+		
+	  }
+	  
+	  private static Class<?> analysisClazzInfo(Object object){
+		  
+	        return null;
+	    }
+	  public static Type[] getParameterizedTypes(Object object) {
+		    Type superclassType = object.getClass().getGenericSuperclass();
+		    if (!ParameterizedType.class.isAssignableFrom(superclassType.getClass())) {
+		        return null;
+		    }
+		    return ((ParameterizedType)superclassType).getActualTypeArguments();
+		}
 	    public void drawQRCODE(String content,String filepath){
 	        try {
 	            Qrcode qrcode=new Qrcode();

@@ -1,9 +1,17 @@
 package test;
 
-public class TestEntity {
+public class TestEntity<T> {
 	private String name;
 	private int age;
 	
+	private T data;
+	
+	public T getData() {
+		return data;
+	}
+	public void setData(T data) {
+		this.data = data;
+	}
 	public TestEntity() {
 		super();
 	}
