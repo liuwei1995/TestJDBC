@@ -10,9 +10,7 @@ public class MailTest {
 //        mail.setPassword("xxxxx"); // 发件人邮箱的登录密码  
 //        mail.setSubject("aaaaaaaaa");  
 //        mail.setMessage("bbbbbbbbbbbbbbbbb");
-        
 
-        
         new MailUtil().send(mail);  
 	}
 }
